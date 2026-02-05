@@ -1,11 +1,12 @@
-import QuestionsData from "D:/React-Classic/quiz-app/src/data/QuestionsData.js";
+import QuestionsData from "../data/QuestionsData.js";
 import { useState, useEffect, useContext } from "react";
 import { DataContext } from "../App";
 const Quiz = () => {
     console.log(QuestionsData);
+    
     const [current, setCurrent] = useState(0);
     const [selectChoice, setSelectChoice] = useState("");
-    const {score, setScore, setAppState} = useContext(DataContext);
+    const {score, setScore, setAppMode} = useContext(DataContext);
 
     useEffect(() => {
         checkAnswer();
@@ -28,7 +29,7 @@ const Quiz = () => {
     const nextQuestion = () => {
         setSelectChoice("");
         if (current === QuestionsData.length - 1) {
-            setAppState("score");
+            setAppMode("score");
         } else {
             setCurrent(current + 1);
         }

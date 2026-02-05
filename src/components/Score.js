@@ -3,10 +3,10 @@ import { DataContext } from './../App';
 import QuestionsData from "D:/React-Classic/quiz-app/src/data/QuestionsData.js";
 
 const Score  = () => {
-    const { score, setScore, setAppState } = useContext(DataContext);
+    const { score, setScore, setAppMode } = useContext(DataContext);
     const restartApp = () => {
         setScore(0);
-        setAppState("menu");
+        setAppMode("menu");
     }
 
     return (
