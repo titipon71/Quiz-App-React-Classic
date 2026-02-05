@@ -13,7 +13,7 @@ function App() {
 
   return (
 
-    <DataContext.Provider value={{appState ,setAppState }}>
+    <DataContext.Provider value={{appState ,setAppState, score, setScore}}>
     <div className='App'>
       <h1>Web Development Quiz</h1>
       {appState === "menu" && <Menu />}

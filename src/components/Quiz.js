@@ -1,24 +1,40 @@
 import QuestionsData from "D:/React-Classic/quiz-app/src/data/QuestionsData.js";
-import {useState , useEffect} from "react";
+import { useState, useEffect, useContext } from "react";
+import { DataContext } from "../App";
 const Quiz = () => {
     console.log(QuestionsData);
     const [current, setCurrent] = useState(0);
     const [selectChoice, setSelectChoice] = useState("");
+    const {score, setScore, setAppState} = useContext(DataContext);
 
     useEffect(() => {
-        checkAnswer()
-    },[selectChoice])
+        checkAnswer();
+    }, [selectChoice]);
 
     const checkAnswer = () => {
-        if(selectChoice !== ""){
-            if(selectChoice === QuestionsData[current].answer){
+        if (selectChoice !== "") {
+            if (selectChoice === QuestionsData[current].answer) {
                 console.log("ตอบถูกและได้คะแนน");
+                setScore(score + 1);
+                nextQuestion()
             }
-            else{
+            else {
                 console.log("ตอบผิดไม่มีคะแนน T_T");
+                nextQuestion()
             }
+        }
     }
+
+    const nextQuestion = () => {
+        setSelectChoice("");
+        if (current === QuestionsData.length - 1) {
+            setAppState("score");
+        } else {
+            setCurrent(current + 1);
+        }
     }
+
+
 
     return (
         <div className="quiz">
@@ -29,9 +45,9 @@ const Quiz = () => {
                 <button onClick={() => setSelectChoice("C")}>{QuestionsData[current].C}</button>
                 <button onClick={() => setSelectChoice("D")}>{QuestionsData[current].D}</button>
             </div>
-            <p>{`${current+1} / ${QuestionsData.length}`}</p>
+            <p>{`${current + 1} / ${QuestionsData.length}`}</p>
         </div>
     )
-} 
+}
 
 export default Quiz;
