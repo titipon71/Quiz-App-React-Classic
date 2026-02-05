@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { DataContext } from './../App';
-import QuestionsData from "D:/React-Classic/quiz-app/src/data/QuestionsData.js";
+import QuestionsData from "../data/QuestionsData.js";
 
 const Score  = () => {
     const { score, setScore, setAppMode } = useContext(DataContext);
